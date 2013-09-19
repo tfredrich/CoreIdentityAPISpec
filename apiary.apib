@@ -39,8 +39,8 @@ GET /organizations
 {}
 ]
 
-Get an organization
-GET /organizations/{id}
+Read an organization by uuid or name.
+GET /organizations/{uuid|name}
 < 200
 < Content-Type: application/json
 [
@@ -48,20 +48,75 @@ GET /organizations/{id}
 ]
 
 Update an organization
-PUT /organizations/{id}
+PUT /organizations/{uuid|name}
 > Content-Type: application/json
 { "product":"1AB23ORM", "quantity": 2 }
+< 204
+
+
+Delete an organization
+DELETE /organizations/{uuid|name}
+< 204
+
+--
+Application Management Resources
+--
+
+Create an application within an organization
+POST /organizations/{id}/applications
+> Content-type: application/json
+{
+    "name":"sample-application",
+    "description":"Sample application description"
+}
+< 201
+< Content-Type: application/json
+< Location: /applications/{uuid}
+{
+    "uuid":"1234-1234-1234-1234",
+    "organizationId":"1234-1234-1234-1234",
+    "name":"sample-application",
+    "description":"Sample application description"
+}
+
+List applications within an organization
+GET /organizations/{uuid|name}/applications
 < 200
 < Content-Type: application/json
 [
-{}
+    {
+        "uuid":"1234-1234-1234-1234",
+        "organizationId":"1234-1234-1234-1234",
+        "name":"sample-application",
+        "description":"Sample application description"
+    }
 ]
 
-Delete an organization
-DELETE /organizations/{id}
-< 204
+Read a particular application by name or uuid.
+GET /organizations/{uuid|name}/applications/{uuid|name}
+< 200
+< Content-Type: application/json
+{
+    "uuid":"1234-1234-1234-1234",
+    "organizationId":"1234-1234-1234-1234",
+    "name":"sample-application",
+    "description":"Sample application description"
+}
 
--- Payment Resources --
+Read a particular application by uuid.
+GET /applications/{uuid}
+< 200
+< Content-Type: application/json
+{
+    "uuid":"1234-1234-1234-1234",
+    "organizationId":"1234-1234-1234-1234",
+    "name":"sample-application",
+    "description":"Sample application description"
+}
+
+--
+User Management Resources
+--
 
 This resource allows you to submit payment information to process your *shopping cart* items
 POST /payment
