@@ -13,11 +13,12 @@ The following is a section of resources related to the Organization management. 
 
 Create a new organization
 POST /organizations
+> Content-Type: application/json
+{ "name":"sample-org", "description":"This is a sample organization", "administrators":[{"emailAddress":"admin@example.com", "username":"admin1","password":"password"}]}
 < 201
 < Content-Type: application/json
-[
+< Location: /organizations/1234-1234-1234-1234
 {}
-]
 
 List organizations that you have access to.
 GET /organizations
@@ -37,6 +38,8 @@ GET /organizations/{id}
 
 Update an organization
 PUT /organizations/{id}
+> Content-Type: application/json
+{ "product":"1AB23ORM", "quantity": 2 }
 < 200
 < Content-Type: application/json
 [
@@ -45,19 +48,7 @@ PUT /organizations/{id}
 
 Delete an organization
 DELETE /organizations/{id}
-< 200
-< Content-Type: application/json
-[
-{}
-]
-
-Save new products in your shopping cart
-POST /shopping-cart
-> Content-Type: application/json
-{ "product":"1AB23ORM", "quantity": 2 }
-< 201
-< Content-Type: application/json
-{ "status": "created", "url": "/shopping-cart/2" }
+< 204
 
 -- Payment Resources --
 
