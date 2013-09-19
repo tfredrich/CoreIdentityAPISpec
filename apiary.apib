@@ -14,7 +14,18 @@ The following is a section of resources related to the Organization management. 
 Create a new organization
 POST /organizations
 > Content-Type: application/json
-{ "name":"sample-org", "description":"This is a sample organization", "administrators":[{"emailAddress":"admin@example.com", "username":"admin1","password":"password"}]}
+{
+    "name":"sample-org",
+    "description":"This is a sample organization",
+    "administrators":
+    [
+        {
+            "emailAddress":"admin@example.com",
+            "username":"admin1",
+            "password":"password"
+        }
+    ]
+}
 < 201
 < Content-Type: application/json
 < Location: /organizations/1234-1234-1234-1234
