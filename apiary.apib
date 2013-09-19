@@ -62,8 +62,8 @@ DELETE /organizations/{uuid|name}
 Application Management Resources
 --
 
-Create an application within an organization
-POST /organizations/{id}/applications
+Create an application within an organization.
+POST /organizations/{uuid|name}/applications
 > Content-type: application/json
 {
     "name":"sample-application",
@@ -92,7 +92,7 @@ GET /organizations/{uuid|name}/applications
     }
 ]
 
-Read a particular application by name or uuid.
+Read an application by name or uuid.
 GET /organizations/{uuid|name}/applications/{uuid|name}
 < 200
 < Content-Type: application/json
@@ -103,7 +103,7 @@ GET /organizations/{uuid|name}/applications/{uuid|name}
     "description":"Sample application description"
 }
 
-Read a particular application by uuid.
+Read an application by uuid.
 GET /applications/{uuid}
 < 200
 < Content-Type: application/json
