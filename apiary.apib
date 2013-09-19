@@ -11,7 +11,7 @@ Organization Management Resources
 The following is a section of resources related to the Organization management. An organization is the root model.
 --
 
-Create a new organization
+Create a new organization.
 POST /organizations
 > Content-Type: application/json
 {
@@ -29,32 +29,32 @@ POST /organizations
 < 201
 < Content-Type: application/json
 < Location: /organizations/1234-1234-1234-1234
-{}
+{
+    "uuid":"1234-1234-1234-1234",
+    "name":"sample-org,
+    "description":"This is a sample organization",
+    "administratorIds":["1234-1234-1234-1234"]
+}
 
 List organizations that you have access to.
 GET /organizations
 < 200
 < Content-Type: application/json
-[
-{}
-]
+[]
 
 Read an organization by uuid or name.
 GET /organizations/{uuid|name}
 < 200
 < Content-Type: application/json
-[
-{}
-]
+[]
 
-Update an organization
+Update an organization by uuid or name.
 PUT /organizations/{uuid|name}
 > Content-Type: application/json
 { "product":"1AB23ORM", "quantity": 2 }
 < 204
 
-
-Delete an organization
+Delete an organization by uuid or name.
 DELETE /organizations/{uuid|name}
 < 204
 
@@ -79,7 +79,7 @@ POST /organizations/{uuid|name}/applications
     "description":"Sample application description"
 }
 
-List applications within an organization
+List applications within an organization.
 GET /organizations/{uuid|name}/applications
 < 200
 < Content-Type: application/json
@@ -119,7 +119,14 @@ User Management Resources
 --
 
 This resource allows you to submit payment information to process your *shopping cart* items
-POST /payment
-{ "cc": "12345678900", "cvc": "123", "expiry": "0112" }
-< 200
+POST /organizations/{uuid|name}/applications/{uuid|name}/users
+> Content-Type: application/json
+{
+    "emailAddress": "user@example.com",
+    "username": "user1",
+    "password": "password"
+}
+< 201
+< Content-Type: application/json
+< Location: /users/{uuid}
 { "receipt": "/payment/receipt/1" }
